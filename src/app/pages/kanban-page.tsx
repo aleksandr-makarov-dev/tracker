@@ -1,10 +1,17 @@
 import { AvatarGroup } from "@/components/closed/avatar-group";
+import { MultiSelect } from "@/components/closed/multi-select";
 import DashboardLayout from "@/components/layouts/dashboard-layout";
 import { Badge, badgeVariants } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { formatDate } from "@/utils/format-date";
 import type { VariantProps } from "class-variance-authority";
-import { MoreVerticalIcon, PlusIcon } from "lucide-react";
+import {
+  ComputerIcon,
+  FilterIcon,
+  MoreVerticalIcon,
+  PlusIcon,
+} from "lucide-react";
 
 type TaskPriority = "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
 
@@ -53,8 +60,8 @@ const items: {
     priority: "CRITICAL",
     dueDate: new Date("2025-08-08"),
     labels: [
-      { name: "DevOps", color: "primary" },
-      { name: "Фронтенд", color: "success" },
+      { name: "DevOps", color: "blue" },
+      { name: "Фронтенд", color: "green" },
     ],
     files: 4,
     messages: 12,
@@ -66,7 +73,7 @@ const items: {
     listId: "list-1",
     priority: "HIGH",
     dueDate: new Date("2025-08-05"),
-    labels: [{ name: "Аналитика", color: "muted" }],
+    labels: [{ name: "Аналитика", color: "gray" }],
     files: 2,
     messages: 6,
     checkItems: 3,
@@ -77,7 +84,7 @@ const items: {
     listId: "list-1",
     priority: "MEDIUM",
     dueDate: new Date("2025-08-10"),
-    labels: [{ name: "Архитектура", color: "warning" }],
+    labels: [{ name: "Архитектура", color: "orange" }],
     files: 1,
     messages: 3,
     checkItems: 2,
@@ -89,8 +96,8 @@ const items: {
     priority: "HIGH",
     dueDate: new Date("2025-08-12"),
     labels: [
-      { name: "Фронтенд", color: "primary" },
-      { name: "Бэкенд", color: "danger" },
+      { name: "Фронтенд", color: "blue" },
+      { name: "Бэкенд", color: "red" },
     ],
     files: 5,
     messages: 8,
@@ -103,8 +110,8 @@ const items: {
     priority: "CRITICAL",
     dueDate: new Date("2025-08-15"),
     labels: [
-      { name: "Бэкенд", color: "danger" },
-      { name: "Безопасность", color: "warning" },
+      { name: "Бэкенд", color: "red" },
+      { name: "Безопасность", color: "orange" },
     ],
     files: 3,
     messages: 10,
@@ -117,8 +124,8 @@ const items: {
     priority: "HIGH",
     dueDate: new Date("2025-08-17"),
     labels: [
-      { name: "Бэкенд", color: "success" },
-      { name: "API", color: "primary" },
+      { name: "Бэкенд", color: "red" },
+      { name: "API", color: "blue" },
     ],
     files: 4,
     messages: 9,
@@ -131,8 +138,8 @@ const items: {
     priority: "MEDIUM",
     dueDate: new Date("2025-08-18"),
     labels: [
-      { name: "Фронтенд", color: "yellow" },
-      { name: "UI", color: "primary" },
+      { name: "Фронтенд", color: "blue" },
+      { name: "UI", color: "blue" },
     ],
     files: 2,
     messages: 5,
@@ -144,7 +151,7 @@ const items: {
     listId: "list-2",
     priority: "LOW",
     dueDate: new Date("2025-08-22"),
-    labels: [{ name: "Фронтенд", color: "muted" }],
+    labels: [{ name: "Фронтенд", color: "blue" }],
     files: 1,
     messages: 2,
     checkItems: 1,
@@ -156,8 +163,8 @@ const items: {
     priority: "HIGH",
     dueDate: new Date("2025-08-20"),
     labels: [
-      { name: "Фронтенд", color: "danger" },
-      { name: "UX", color: "success" },
+      { name: "Фронтенд", color: "blue" },
+      { name: "UX", color: "green" },
     ],
     files: 2,
     messages: 6,
@@ -171,7 +178,7 @@ const items: {
     dueDate: new Date("2025-08-10"),
     labels: [
       { name: "UX", color: "yellow" },
-      { name: "Фронтенд", color: "primary" },
+      { name: "Фронтенд", color: "blue" },
     ],
     files: 0,
     messages: 3,
@@ -183,7 +190,7 @@ const items: {
     listId: "list-3",
     priority: "LOW",
     dueDate: new Date("2025-08-11"),
-    labels: [{ name: "Контент", color: "success" }],
+    labels: [{ name: "Контент", color: "green" }],
     files: 1,
     messages: 1,
     checkItems: 0,
@@ -194,7 +201,7 @@ const items: {
     listId: "list-3",
     priority: "MEDIUM",
     dueDate: new Date("2025-08-13"),
-    labels: [{ name: "Дизайн", color: "primary" }],
+    labels: [{ name: "Дизайн", color: "blue" }],
     files: 2,
     messages: 4,
     checkItems: 2,
@@ -206,7 +213,7 @@ const items: {
     priority: "LOW",
     dueDate: new Date("2025-08-12"),
     labels: [
-      { name: "UI", color: "warning" },
+      { name: "UI", color: "orange" },
       { name: "Дизайн", color: "yellow" },
     ],
     files: 3,
@@ -220,8 +227,8 @@ const items: {
     priority: "HIGH",
     dueDate: new Date("2025-08-16"),
     labels: [
-      { name: "Бэкенд", color: "danger" },
-      { name: "Архитектура", color: "muted" },
+      { name: "Бэкенд", color: "red" },
+      { name: "Архитектура", color: "gray" },
     ],
     files: 2,
     messages: 5,
@@ -234,8 +241,8 @@ const items: {
     priority: "HIGH",
     dueDate: new Date("2025-08-09"),
     labels: [
-      { name: "Ревью", color: "primary" },
-      { name: "Бэкенд", color: "success" },
+      { name: "Ревью", color: "blue" },
+      { name: "Бэкенд", color: "red" },
     ],
     files: 2,
     messages: 7,
@@ -248,8 +255,8 @@ const items: {
     priority: "MEDIUM",
     dueDate: new Date("2025-08-10"),
     labels: [
-      { name: "GraphQL", color: "warning" },
-      { name: "Бэкенд", color: "primary" },
+      { name: "GraphQL", color: "orange" },
+      { name: "Бэкенд", color: "red" },
     ],
     files: 1,
     messages: 4,
@@ -262,8 +269,8 @@ const items: {
     priority: "MEDIUM",
     dueDate: new Date("2025-08-11"),
     labels: [
-      { name: "Фронтенд", color: "muted" },
-      { name: "UI", color: "danger" },
+      { name: "Фронтенд", color: "blue" },
+      { name: "UI", color: "red" },
     ],
     files: 2,
     messages: 5,
@@ -275,7 +282,7 @@ const items: {
     listId: "list-4",
     priority: "LOW",
     dueDate: new Date("2025-08-13"),
-    labels: [{ name: "Тесты", color: "success" }],
+    labels: [{ name: "Тесты", color: "yellow" }],
     files: 1,
     messages: 2,
     checkItems: 1,
@@ -287,8 +294,8 @@ const items: {
     priority: "LOW",
     dueDate: new Date("2025-08-14"),
     labels: [
-      { name: "Фронтенд", color: "yellow" },
-      { name: "UX", color: "muted" },
+      { name: "Фронтенд", color: "blue" },
+      { name: "UX", color: "gray" },
     ],
     files: 0,
     messages: 1,
@@ -300,7 +307,7 @@ const items: {
     listId: "list-4",
     priority: "MEDIUM",
     dueDate: new Date("2025-08-15"),
-    labels: [{ name: "DevOps", color: "danger" }],
+    labels: [{ name: "DevOps", color: "red" }],
     files: 1,
     messages: 2,
     checkItems: 2,
@@ -312,8 +319,8 @@ const items: {
     priority: "HIGH",
     dueDate: new Date("2025-08-08"),
     labels: [
-      { name: "Тесты", color: "muted" },
-      { name: "Фронтенд", color: "primary" },
+      { name: "Тесты", color: "yellow" },
+      { name: "Фронтенд", color: "blue" },
     ],
     files: 1,
     messages: 2,
@@ -327,7 +334,7 @@ const items: {
     dueDate: new Date("2025-08-09"),
     labels: [
       { name: "UI", color: "yellow" },
-      { name: "Фронтенд", color: "success" },
+      { name: "Фронтенд", color: "blue" },
     ],
     files: 1,
     messages: 2,
@@ -340,8 +347,8 @@ const items: {
     priority: "MEDIUM",
     dueDate: new Date("2025-08-10"),
     labels: [
-      { name: "Тесты", color: "danger" },
-      { name: "Бэкенд", color: "primary" },
+      { name: "Тесты", color: "yellow" },
+      { name: "Бэкенд", color: "red" },
     ],
     files: 2,
     messages: 3,
@@ -352,102 +359,153 @@ const items: {
 export function KanbanPage() {
   return (
     <DashboardLayout>
-      <div className="flex flex-row gap-2 flex-1 overflow-x-auto overflow-y-hidden">
-        {columns.map((column) => (
-          <div key={column.id} className="w-80 shrink-0 bg-accent  rounded">
-            <div className="p-2 flex flex-row items-center">
-              <p className="text-sm font-medium flex-1 flex flex-row gap-2">
-                <span>{column.label}</span>
-                <span className="text-muted-foreground">25</span>
-              </p>
-              <div className="flex flex-row gap-0.5">
-                <Button variant="soft" color="muted" size="icon">
-                  <PlusIcon />
-                </Button>
-                <Button variant="soft" color="muted" size="icon">
-                  <MoreVerticalIcon />
-                </Button>
+      <div className="overflow-hidden h-full flex flex-col gap-4 p-1">
+        <div>
+          <h2 className="text-2xl font-semibold flex flex-row items-center gap-2">
+            <div className="bg-blue-100 rounded p-1.5">
+              <ComputerIcon />
+            </div>
+            YH Фронтенд
+          </h2>
+        </div>
+        <div className="flex flex-row items-center gap-3">
+          <div className="flex flex-row gap-2 items-center">
+            <Input className="w-min" placeholder="Поиск по задачам" />
+            <Button>Поиск</Button>
+          </div>
+          <MultiSelect
+            placeholder="Выбрать метки"
+            className="w-48"
+            options={[
+              { label: "Фонтенд", value: "frontend" },
+              { label: "Бэкенд", value: "backend" },
+              { label: "Тестирование", value: "testing" },
+              { label: "Мобайл", value: "mobile" },
+              {
+                label: "Встроенное программирование",
+                value: "embedded",
+              },
+            ]}
+            label="Выберите метки"
+          />
+          <MultiSelect
+            placeholder="Выбрать приориоритет"
+            className="w-48"
+            options={[
+              { label: "Низкий", value: "frontend" },
+              { label: "Средний", value: "backend" },
+              { label: "Высокий", value: "testing" },
+              { label: "Критический", value: "mobile" },
+            ]}
+            label="Выберите приоритет"
+          />
+          <Button variant="soft" color="blue">
+            <FilterIcon /> Расширенный фильт
+          </Button>
+        </div>
+        <div className="flex flex-row gap-2 flex-1 overflow-x-auto overflow-y-hidden h-full">
+          {columns.map((column) => (
+            <div
+              key={column.id}
+              className="w-80 shrink-0 bg-accent rounded flex flex-col h-full"
+            >
+              <div className="p-2 flex flex-row items-center">
+                <p className="text-sm font-medium flex-1 flex flex-row gap-2">
+                  <span>{column.label}</span>
+                  <span className="text-muted-foreground">25</span>
+                </p>
+                <div className="flex flex-row gap-1">
+                  <Button variant="soft" color="gray" size="icon">
+                    <PlusIcon />
+                  </Button>
+                  <Button variant="soft" color="gray" size="icon">
+                    <MoreVerticalIcon />
+                  </Button>
+                </div>
+              </div>
+              <div className="flex flex-col gap-1.5 flex-1 p-2 pt-0 overflow-y-auto">
+                {items
+                  .filter((item) => item.listId === column.id)
+                  .map((item) => (
+                    <div
+                      key={item.id}
+                      className="bg-background border flex flex-col gap-2 p-2 rounded shrink-0"
+                    >
+                      <div className="flex flex-row items-center gap-2">
+                        <div className="flex flex-row gap-2 items-center flex-1">
+                          <AvatarGroup
+                            avatars={[
+                              {
+                                image: "https://github.com/leerob.png",
+                                alt: "@leerob",
+                                fallback: "LR",
+                              },
+                              {
+                                image: "https://github.com/leerob.png",
+                                alt: "@leerob",
+                                fallback: "LR",
+                              },
+                              {
+                                image: "https://github.com/leerob.png",
+                                alt: "@leerob",
+                                fallback: "LR",
+                              },
+                            ]}
+                          />
+                          <p className="text-sm font-medium text-muted-foreground">
+                            {item.id}
+                          </p>
+                        </div>
+                        {Math.random() > 0.5 ? (
+                          <Badge variant="soft" color="gray">
+                            {formatDate(item.dueDate)}
+                          </Badge>
+                        ) : (
+                          <Badge variant="soft" color="red">
+                            Сегодня
+                          </Badge>
+                        )}
+                      </div>
+                      <div>
+                        <p className="text-sm break-words">{item.title}</p>
+                      </div>
+                      <div className="flex flex-row gap-1 flex-wrap">
+                        {item.labels.map((label) => (
+                          <Badge
+                            key={label.name}
+                            variant="soft"
+                            color={label.color ?? "gray"}
+                          >
+                            {label.name}
+                          </Badge>
+                        ))}
+                        <Badge
+                          variant="soft"
+                          color={taskPriorityMap[item.priority].color ?? "gray"}
+                        >
+                          {taskPriorityMap[item.priority].label}
+                        </Badge>
+                        <Badge variant="soft" color="gray">
+                          {item.files} Файлов
+                        </Badge>
+                        <Badge variant="soft" color="gray">
+                          {item.checkItems} Подзадач
+                        </Badge>
+                        <Badge variant="soft" color="gray">
+                          {item.messages} Сообщений
+                        </Badge>
+                        {Math.random() > 0.5 ? (
+                          <Badge variant="soft" color="gray">
+                            Есть описание
+                          </Badge>
+                        ) : null}
+                      </div>
+                    </div>
+                  ))}
               </div>
             </div>
-            <div className="flex flex-col gap-1.5 flex-1 p-2 pt-0 overflow-y-auto h-full">
-              {items
-                .filter((items) => items.listId === column.id)
-                .map((item) => (
-                  <div className="bg-background border flex flex-col gap-2 p-2 rounded shrink-0">
-                    <div className="flex flex-row items-center gap-2">
-                      <div className="flex flex-row gap-2 items-center flex-1">
-                        <AvatarGroup
-                          avatars={[
-                            {
-                              image: "https://github.com/leerob.png",
-                              alt: "@leerob",
-                              fallback: "LR",
-                            },
-                            {
-                              image: "https://github.com/leerob.png",
-                              alt: "@leerob",
-                              fallback: "LR",
-                            },
-                            {
-                              image: "https://github.com/leerob.png",
-                              alt: "@leerob",
-                              fallback: "LR",
-                            },
-                          ]}
-                        />
-                        <p className="text-sm font-medium text-muted-foreground">
-                          {item.id}
-                        </p>
-                      </div>
-                      {Math.random() > 0.5 ? (
-                        <Badge variant="soft" color="muted">
-                          {formatDate(item.dueDate)}
-                        </Badge>
-                      ) : (
-                        <Badge variant="soft" color="danger">
-                          Сегодня
-                        </Badge>
-                      )}
-                    </div>
-                    <div>
-                      <p className="text-sm">{item.title}</p>
-                    </div>
-                    <div className="flex flex-row gap-1 flex-wrap">
-                      {item.labels.map((label) => (
-                        <Badge
-                          key={label.name}
-                          variant="soft"
-                          color={label.color ?? "muted"}
-                        >
-                          {label.name}
-                        </Badge>
-                      ))}
-                      <Badge
-                        variant="soft"
-                        color={taskPriorityMap[item.priority].color ?? "muted"}
-                      >
-                        {taskPriorityMap[item.priority].label}
-                      </Badge>
-                      <Badge variant="soft" color="muted">
-                        {item.files} Файлов
-                      </Badge>
-                      <Badge variant="soft" color="muted">
-                        {item.checkItems} Подзадач
-                      </Badge>
-                      <Badge variant="soft" color="muted">
-                        {item.messages} Сообщений
-                      </Badge>
-                      {Math.random() > 0.5 ? (
-                        <Badge variant="soft" color="muted">
-                          Есть описание
-                        </Badge>
-                      ) : null}
-                    </div>
-                  </div>
-                ))}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </DashboardLayout>
   );
@@ -457,8 +515,8 @@ const taskPriorityMap: Record<
   TaskPriority,
   { label: string; color: VariantProps<typeof badgeVariants>["color"] }
 > = {
-  LOW: { label: "Низкий", color: "primary" },
+  LOW: { label: "Низкий", color: "blue" },
   MEDIUM: { label: "Средний", color: "yellow" },
-  HIGH: { label: "Высокий", color: "warning" },
-  CRITICAL: { label: "Критический", color: "danger" },
+  HIGH: { label: "Высокий", color: "orange" },
+  CRITICAL: { label: "Критический", color: "red" },
 } as const;

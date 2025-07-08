@@ -16,11 +16,11 @@ const buttonVariants = cva(
         soft: "",
       },
       color: {
-        primary: "",
-        success: "",
-        danger: "",
-        warning: "",
-        muted: "",
+        blue: "",
+        green: "",
+        red: "",
+        orange: "",
+        gray: "",
       },
       size: {
         default: "h-8 px-3 py-1 has-[>svg]:px-3",
@@ -30,85 +30,90 @@ const buttonVariants = cva(
       },
     },
     compoundVariants: [
+      // Soft
       {
         variant: "soft",
-        color: "primary",
+        color: "blue",
         className: "bg-blue-100 text-blue-900 hover:bg-blue-200",
       },
       {
         variant: "soft",
-        color: "success",
+        color: "green",
         className: "bg-green-100 text-green-900 hover:bg-green-200",
       },
       {
         variant: "soft",
-        color: "danger",
+        color: "red",
         className: "bg-red-100 text-red-900 hover:bg-red-200",
       },
       {
         variant: "soft",
-        color: "warning",
+        color: "orange",
         className: "bg-orange-100 text-orange-900 hover:bg-orange-200",
       },
       {
         variant: "soft",
-        color: "muted",
+        color: "gray",
         className: "bg-gray-100 text-gray-900 hover:bg-gray-200",
       },
+
+      // Solid
       {
         variant: "solid",
-        color: "primary",
+        color: "blue",
         className: "bg-blue-700 text-white hover:bg-blue-800",
       },
       {
         variant: "solid",
-        color: "success",
+        color: "green",
         className: "bg-green-700 text-white hover:bg-green-800",
       },
       {
         variant: "solid",
-        color: "danger",
+        color: "red",
         className: "bg-red-700 text-white hover:bg-red-800",
       },
       {
         variant: "solid",
-        color: "warning",
+        color: "orange",
         className: "bg-orange-600 text-white hover:bg-orange-700",
       },
       {
         variant: "solid",
-        color: "muted",
+        color: "gray",
         className: "bg-gray-700 text-white hover:bg-gray-800",
       },
+
+      // Ghost
       {
         variant: "ghost",
-        color: "primary",
+        color: "blue",
         className: "text-blue-900 hover:bg-blue-50",
       },
       {
         variant: "ghost",
-        color: "success",
+        color: "green",
         className: "text-green-900 hover:bg-green-50",
       },
       {
         variant: "ghost",
-        color: "danger",
+        color: "red",
         className: "text-red-900 hover:bg-red-50",
       },
       {
         variant: "ghost",
-        color: "warning",
+        color: "orange",
         className: "text-orange-900 hover:bg-orange-50",
       },
       {
         variant: "ghost",
-        color: "muted",
+        color: "gray",
         className: "text-gray-900 hover:bg-gray-50",
       },
     ],
     defaultVariants: {
       variant: "solid",
-      color: "primary",
+      color: "blue",
       size: "default",
     },
   }

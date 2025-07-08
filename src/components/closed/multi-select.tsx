@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,71 +10,74 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useState } from "react";
 import { Checkbox } from "../ui/checkbox";
+import { cn } from "@/lib/utils";
 
 export type MultiSelectProps = {
   label: string;
-  placeholder: string;
   value?: string[];
   onChange?: (value: string[]) => void;
   options: { label: string; value: string }[];
+  className?: string;
+  placeholder?: string;
 };
 
 export function MultiSelect({
   label,
-  placeholder,
   value = [],
   options,
+  className,
   onChange,
+  placeholder = "Не выбрано",
 }: MultiSelectProps) {
   const [selectedItems, setSelectedItems] = useState<string[]>(value);
 
-  function handleSelectItem(val: string) {
+  const handleSelectItem = (val: string) => {
     const newSelected = selectedItems.includes(val)
       ? selectedItems.filter((item) => item !== val)
       : [...selectedItems, val];
 
     setSelectedItems(newSelected);
     onChange?.(newSelected);
-  }
-
-  const getButtonLabel = () => {
-    const len = selectedItems.length;
-
-    if (len === 0) return placeholder;
-
-    if (len === 1)
-      return options.find((item) => item.value === selectedItems[0])?.label;
-
-    if (len > 1) {
-      return `Выбрано: ${len}`;
-    }
   };
+
+  const buttonLabel = useMemo(() => {
+    if (selectedItems.length === 0) return placeholder;
+
+    const selectedLabels = selectedItems
+      .map((val) => options.find((opt) => opt.value === val)?.label)
+      .filter(Boolean);
+
+    return selectedLabels.join(", ");
+  }, [selectedItems, options]);
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="soft" color="muted">
-          {getButtonLabel()}
+        <Button
+          className={cn("justify-start overflow-hidden", className)}
+          variant="soft"
+          color="gray"
+        >
+          <span className="block truncate w-full text-left">{buttonLabel}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="max-w-96">
         <DropdownMenuLabel>{label}</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {options.map((option) => {
-          const checked = selectedItems.includes(option.value);
+        {options.map(({ label, value }) => {
+          const checked = selectedItems.includes(value);
           return (
             <DropdownMenuItem
-              key={option.value}
+              key={value}
               onSelect={(e) => {
                 e.preventDefault(); // Prevent dropdown from closing
-                handleSelectItem(option.value);
+                handleSelectItem(value);
               }}
               className="flex items-center gap-2 cursor-pointer"
             >
               <Checkbox checked={checked} />
-              <span>{option.label}</span>
+              <span>{label}</span>
             </DropdownMenuItem>
           );
         })}

@@ -11,11 +11,11 @@ const badgeVariants = cva(
         soft: "border-transparent",
       },
       color: {
-        primary: "",
-        success: "",
-        danger: "",
-        warning: "",
-        muted: "",
+        blue: "",
+        green: "",
+        red: "",
+        orange: "",
+        gray: "",
         yellow: "",
       },
     },
@@ -23,27 +23,27 @@ const badgeVariants = cva(
       // solid variants
       {
         variant: "solid",
-        color: "primary",
+        color: "blue",
         className: "bg-blue-700 text-white",
       },
       {
         variant: "solid",
-        color: "success",
+        color: "green",
         className: "bg-green-700 text-white",
       },
       {
         variant: "solid",
-        color: "danger",
+        color: "red",
         className: "bg-red-700 text-white",
       },
       {
         variant: "solid",
-        color: "warning",
+        color: "orange",
         className: "bg-orange-600 text-white",
       },
       {
         variant: "solid",
-        color: "muted",
+        color: "gray",
         className: "bg-gray-700 text-white",
       },
       {
@@ -55,27 +55,27 @@ const badgeVariants = cva(
       // soft variants
       {
         variant: "soft",
-        color: "primary",
+        color: "blue",
         className: "bg-blue-100 text-blue-900",
       },
       {
         variant: "soft",
-        color: "success",
+        color: "green",
         className: "bg-green-100 text-green-900",
       },
       {
         variant: "soft",
-        color: "danger",
+        color: "red",
         className: "bg-red-100 text-red-900",
       },
       {
         variant: "soft",
-        color: "warning",
+        color: "orange",
         className: "bg-orange-100 text-orange-900",
       },
       {
         variant: "soft",
-        color: "muted",
+        color: "gray",
         className: "bg-gray-100 text-foreground",
       },
       {
@@ -86,7 +86,7 @@ const badgeVariants = cva(
     ],
     defaultVariants: {
       variant: "solid",
-      color: "primary",
+      color: "blue",
     },
   }
 );
