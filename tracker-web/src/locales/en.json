@@ -1,0 +1,11 @@
+{
+  "App": {
+    "action_button": "Start Upload"
+  },
+  "ListCreateDialog": {
+    "title": "Add New List",
+    "add_action": "Add List",
+    "cancel_action": "Cancel",
+    "form_label_title": "Title"
+  }
+}

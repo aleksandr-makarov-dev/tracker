@@ -1,0 +1,24 @@
+{
+  "App": {
+    "action_button": "Начать загрузку"
+  },
+  "ListCreateDialog": {
+    "title": "Добавление нового списка",
+    "add_action": "Добавить список",
+    "cancel_action": "Отмена",
+    "form_label_title": "Название"
+  },
+  "TaskCreateDialog": {
+    "title": "Добавление новой задачи",
+    "add_action": "Добавить задачу",
+    "cancel_action": "Отмена",
+    "form_label_title": "Название",
+    "form_label_priority": "Приоритет",
+    "form_label_due_date": "Срок выполения",
+    "form_priority_placeholder": "Выберите приоритет",
+    "form_priority_option_low": "Низкий",
+    "form_priority_option_medium": "Средний",
+    "form_priority_option_high": "Высокий",
+    "form_priority_option_critical": "Критический"
+  }
+}
